@@ -119,7 +119,7 @@ begin
 			# ======= BEGIN OWNAGE =======
 			$result = $_
 
-			if ($result.Headers.Via.Contains('McAfee Web Gateway')) {
+			if ($result.Headers.ContainsKey('Via') -and $result.Headers.Via.Contains('McAfee Web Gateway')) {
 				Write-Verbose 'McAfee Web Gateway detected, attempting to set up status checks'
 				$content = $result.Content
 				if ($content -match '/mwg-internal/(.*?)/files/') {
